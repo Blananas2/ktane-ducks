@@ -11,6 +11,8 @@ public class ducksScript : MonoBehaviour {
 
     public KMBombInfo Bomb;
     public KMAudio Audio;
+    public KMColorblindMode ColorblindMode;
+    public TextMesh[] ColorblindTexts;
 
     public KMSelectable[] Ducks; //Up, Right, Down, Left
     public GameObject[] DuckObjs;
@@ -31,6 +33,8 @@ public class ducksScript : MonoBehaviour {
     int Pressed = -1;
     int[] Squeaks = { -1, -1, -1, -1 };
     string[] DirectionNames = { "Up", "Right", "Down", "Left" };
+    string[] colorNames = { "blue", "red", "green", "yellow" };
+    bool colorblindMode;
 
     //Logging
     static int ModuleIDCounter = 1;
@@ -53,17 +57,29 @@ public class ducksScript : MonoBehaviour {
         Orientation = Rnd.Range(0, 4);
 
         Debug.LogFormat("[Ducks #{0}] You are at {1} with {2} at the top.", ModuleID, Coord(Position), DirectionNames[Orientation]);
+        Debug.LogFormat("[Ducks #{0}] Colors of the ducks, starting from the top, going clockwise: {1}.", ModuleID, Enumerable.Range(0, 4).Select(i => colorNames[Room[Position][(i + Orientation) % 4]]).Join(", "));
         Color();
 
         for (int S = 0; S < 4; S++) {
             do { Squeaks[S] = Rnd.Range(0, 10); }
                 while ( Squeaks[S] == Squeaks[(S + 1) % 4] || Squeaks[S] == Squeaks[(S + 2) % 4] || Squeaks[S] == Squeaks[(S + 3) % 4]);
         }
+        colorblindMode = ColorblindMode.ColorblindModeActive;
+        SetColorblindMode(colorblindMode);
+    }
+
+
+    void SetColorblindMode(bool mode)
+    {
+        foreach (var cbt in ColorblindTexts)
+            cbt.gameObject.SetActive(mode);
     }
 
     void Color () {
         for (int J = 0; J < 4; J++) {
             DuckObjs[J].GetComponent<MeshRenderer>().material = DuckMats[Room[Position][(J + Orientation) % 4]];
+            ColorblindTexts[J].text = colorNames[Room[Position][(J + Orientation) % 4]];
+            ColorblindTexts[J].color = DuckObjs[J].GetComponent<MeshRenderer>().material.color;
         }
     }
 
@@ -101,6 +117,8 @@ public class ducksScript : MonoBehaviour {
                     break;
                 }
                 Debug.LogFormat("[Ducks #{0}] Squeezed {1}{2}.", ModuleID, DirectionNames[D], ValidMovement ? (", you're now at " + Coord(Position)) : "");
+                if (Position != 12)
+                    Debug.LogFormat("[Ducks #{0}] Colors of the ducks, starting from the top, going clockwise: {1}.", ModuleID, Enumerable.Range(0, 4).Select(i => colorNames[Room[Position][(i + Orientation) % 4]]).Join(", "));
             }
         }
     }
@@ -146,7 +164,14 @@ public class ducksScript : MonoBehaviour {
     private IEnumerator ProcessTwitchCommand(string command)
     {
         command = command.Trim();
-        if (Regex.IsMatch(command, @"^press\s+[UDLR]+$", RegexOptions.IgnoreCase))
+        if (Regex.IsMatch(command, @"^\s*cb|colou?rblind\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            yield return null;
+            colorblindMode = !colorblindMode;
+            SetColorblindMode(colorblindMode);
+            yield break;
+        }
+        if (Regex.IsMatch(command, @"^press\s+[UDLR]+$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
         {
             yield return null;
             int[] directions = command.Split(' ').Where(s => !string.IsNullOrEmpty(s)).Last().ToUpper().ToCharArray().Select(dir =>
