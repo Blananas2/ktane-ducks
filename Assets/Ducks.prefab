@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 4390851447079662}
   - component: {fileID: 23115660062259986}
   - component: {fileID: 102846748047147036}
+  - component: {fileID: 114907331174192168}
   m_Layer: 0
   m_Name: CBText
   m_TagString: Untagged
@@ -199,6 +200,7 @@ GameObject:
   - component: {fileID: 4266947444280796}
   - component: {fileID: 23475672648264626}
   - component: {fileID: 102576942669591304}
+  - component: {fileID: 114451941276191846}
   m_Layer: 0
   m_Name: CBText
   m_TagString: Untagged
@@ -254,6 +256,7 @@ GameObject:
   - component: {fileID: 4901795825163864}
   - component: {fileID: 23434781292883422}
   - component: {fileID: 102414708314788836}
+  - component: {fileID: 114438201692077674}
   m_Layer: 0
   m_Name: CBText
   m_TagString: Untagged
@@ -271,6 +274,7 @@ GameObject:
   - component: {fileID: 4540327966079086}
   - component: {fileID: 23860483880227822}
   - component: {fileID: 102698016722052140}
+  - component: {fileID: 114972439659288276}
   m_Layer: 0
   m_Name: CBText
   m_TagString: Untagged
@@ -2054,6 +2058,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colorblindMode: 0
+--- !u!114 &114438201692077674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1484171374011964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - GUI/KT 3D Text Diffuse
+--- !u!114 &114451941276191846
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386710306373086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - GUI/KT 3D Text Diffuse
 --- !u!114 &114454383462897410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2231,6 +2261,19 @@ MonoBehaviour:
   ModuleType: ducks
   ModuleDisplayName: Ducks
   RequiresTimerVisibility: 0
+--- !u!114 &114907331174192168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1265312463287430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - GUI/KT 3D Text Diffuse
 --- !u!114 &114907837735438752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2253,6 +2296,19 @@ MonoBehaviour:
   m_Script: {fileID: -1675560866, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114972439659288276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491452767570888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1005838349, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShaderNames:
+  - GUI/KT 3D Text Diffuse
 --- !u!114 &114980659859830284
 MonoBehaviour:
   m_ObjectHideFlags: 1
